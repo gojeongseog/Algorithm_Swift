@@ -104,22 +104,19 @@ func solution(_ s:String) -> Int {
 // 정답 풀이
 
 
-/// replacingOccurences(of:with:) 이란 메서드를 통해 아주 쉽게 풀이 가능한 문제다.
+/// replacingOccurrences(of:with:) 이란 메서드를 통해 아주 쉽게 풀이 가능한 문제다.
 /// target 에는 교체할 대상, replacement에는 교체할 값을 넣어 교체된 문자열이 반환되는 함수이다.
 /// ex)
 ///     var test = "one4seveneight"
-///     print(test.replacingOccurence(of:"one",with:"1")
+///     print(test.replacingOccurrences(of:"one",with:"1")
 /// 작성하면 14seveneight 이 프린트 됨
 func solution(_ s:String) -> Int {
-    
-    let numArray = ["zero","one","two","three","four","five","six","seven","eight","nine"]
-    var resultArray = s
-    
-    for i in 0..<numArray.count {
-        resultArray = resultArray.replacingOccurrences(of: numArray[i], with: "\(i)")
-        print(resultArray)
+    let strArr = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+
+    var str: String = s
+    for n in 0...9 {
+        str = str.replacingOccurrences(of:strArr[n],with: String(n))
     }
-    
-    return Int(resultArray)!
-    
+
+    return Int(str)!
 }
