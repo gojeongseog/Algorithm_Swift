@@ -2,7 +2,7 @@
 //  백준-1920-수 찾기.swift
 //  
 //
-//  Created by KoJeongseok on 2023/02/12.
+//  Created by KoJeongseok on 2023/02/20.
 //  https://www.acmicpc.net/problem/1920
 
 // 기본적인 이진탐색으로 문제를 해결함
