@@ -3,45 +3,35 @@
 //  
 //
 //  Created by KoJeongseok on 2023/05/21.
-//
+//  https://school.programmers.co.kr/learn/courses/30/lessons/181916
 
 import Foundation
 
 func solution(_ a:Int, _ b:Int, _ c:Int, _ d:Int) -> Int {
     var counts: [Int: Int] = [:]
-    var result = 0
 
     for number in [a, b, c, d] {
-        if counts[number] != nil {
-            counts[number]! += 1
-        } else {
-            counts[number] = 1
-        }
+        counts[number, default: 0] += 1
     }
 
     var sortedCounts = counts.sorted { $0.value > $1.value }
-    let first = sortedCounts.first!.value
+    let highestCount = sortedCounts.first!.value
     var firstNum = sortedCounts.first!.key
     let lastNum = sortedCounts.last!.key
     let count = sortedCounts.count
 
-    if first == 4 {
-        // 모두 같음
-        result = firstNum * 1111
-    } else if first == 3 {
-        // 세 개 같음
-        result = (10 * firstNum + lastNum) * (10 * firstNum + lastNum)
-    } else if first == 2 && count == 2 {
-        // 두 개씩 같음
-        result = (firstNum + lastNum) * Int((firstNum - lastNum).magnitude)
-    } else if first == 2 {
-        // 두 개같고 하나 다름
+    switch highestCount {
+    case 4:
+        return firstNum * 1111
+    case 3:
+        return (10 * firstNum + lastNum) * (10 * firstNum + lastNum)
+    case 2 where count == 2:
+        return (firstNum + lastNum) * abs(firstNum - lastNum)
+    case 2:
         sortedCounts.removeFirst()
-        firstNum = sortedCounts.first!.key
-        result = firstNum * lastNum
-    } else {
-        // 모두 다름
-        result = sortedCounts.sorted { $0.key < $1.key}.first!.key
+        let newFirstNum = sortedCounts.first!.key
+        return newFirstNum * lastNum
+    default:
+        return sortedCounts.sorted { $0.key < $1.key}.first!.key
     }
-    return result
 }
